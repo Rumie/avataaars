@@ -7,22 +7,25 @@
     "start": "./node_modules/.bin/nodemon ./bin/www --exec npx babel-node --presets es2015,stage-2,react"
   },
   "dependencies": {
-    "avataaars": "^1.1.0",
+    "avataaars": "^1.2.1",
     "aws-sdk": "^2.631.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
     "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "babel-register": "latest",
-    "convert-svg-to-png": "^0.5.0",
-    "debug": "latest",
-    "express": "latest",
-    "forever": "latest",
-    "morgan": "latest",
+    "babel-register": "^6.24.1",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "forever": "^3.0.2",
+    "morgan": "^1.10.0",
     "nodemon": "^1.18.9",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "webpack": "^3.6.0"
+    "svg2img": "^0.8.1",
+    "webpack": "^3.12.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "core-js": "^2.6.0"
   }
 }

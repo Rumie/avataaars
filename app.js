@@ -1,6 +1,6 @@
 import express from 'express';
-const { convert } = require('convert-svg-to-png');
 
+const svg2img = require('svg2img');
 const aws = require('./utils/aws');
 
 var crypto = require('crypto');
@@ -13,6 +13,9 @@ import Avataaars from 'avataaars';
 const app = express();
 
 app.get('/', async (req, res) => {
+  if (req.query.facialHairType === 'BeardMagestic') {
+    req.query.facialHairType = 'BeardMajestic';
+  }
   const appString = RDS.renderToString(<Avataaars {...req.query} />);
 
   res.writeHead(200, {
@@ -26,6 +29,13 @@ const getHash = (req) => {
 };
 
 app.get('/png/:width?', async (req, res) => {
+  if (process.env.DISABLE_PNG) {
+    return res.send('PNG is turned off due to abuse, but you can use SVGs still! https://github.com/gkoberger/avataaars/issues/16');
+  }
+
+  // You'll have to add this back to the package.json
+  const { convert } = require('convert-svg-to-png');
+
   const hash = getHash(req);
   const fileName = `${getHash(req)}.png`;
 
@@ -51,7 +61,6 @@ app.get('/png/:width?', async (req, res) => {
       res.end(png);
     });
   });
-
 });
 
 // catch 404 and forward to error handler
